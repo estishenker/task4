@@ -5,17 +5,25 @@ pipeline {
         stage('Pull') {
             steps {
                 echo 'Pulling..'
-                
+                git clone https://github.com/estishenker/task4.git /home/devops/Documents/nodeapp/
+            }
+        }
+        stage('Build my_node_app image') {
+            steps {
+                echo 'Building image..'
+                sh 'docker build .'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                echo 'Testing if image created....'
+                sh ''' 
+                if [ docker images |grep my_node_app ]
+                then
+                  echo "image ${docker images |grep my_node_app) created" 
+                else
+                  echo "failure"
+                '''
             }
         }
     }
