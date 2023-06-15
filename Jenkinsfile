@@ -10,7 +10,7 @@ pipeline {
                 git credentialsId: 'credentials for task4 project', url: 'https://github.com/estishenker/task4.git'
                 sh 'cd /home/devops/Documents/'
                 sh 'if [ -d "nodeapp" ]; then rm -R nodeapp; fi'
-                git clone 'https://github.com/estishenker/task4.git' /home/devops/Documents/nodeapp/ 
+                sh 'git clone "https://github.com/estishenker/task4.git" /home/devops/Documents/nodeapp/' 
             }
         }
         stage('Build my_node_app image') {
