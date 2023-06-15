@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        boolean ifContainerRunning = true
+    }
     stages {
         stage('Pull') {
             steps {
@@ -13,8 +16,7 @@ pipeline {
                 echo 'Building update image ...'
                 sh 'docker build .'
             }
-        }
-        boolean ifContainerRunning = true
+        }        
         stage('Test') {
             steps {
                 echo 'Testing if image created ...'
@@ -30,17 +32,18 @@ pipeline {
             }
         }
         stage('Notification with URL') {
-            if(ifContainerRunning){           
-                notifySuccessful()            
+            if( ifContainerRunning == true ){           
+                steps {
+                    notifySuccessful()
+                }
             }
         }    
     }
 }
 def notifySuccessful() {  
-    emailext (
-        subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+    emailext subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
         body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
         <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-        recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-        )
+        recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+        to: 'estishenker@gmail.com'
 }
