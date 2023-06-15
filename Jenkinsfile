@@ -29,7 +29,7 @@ pipeline {
                   docker run my_node_app          
                 else
                   echo "failure"
-                  ifContainerRunning = false
+                  ifContainerRunning == false
                 '''
             }
         }
