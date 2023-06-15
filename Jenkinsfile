@@ -3,10 +3,9 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
-                script{
-                    echo 'Pulling latest code ...'                    
-                    git clone 'https://github.com/estishenker/task4.git' /home/devops/Documents/nodeapp/
-                }
+                echo 'Pulling latest code ...'                              
+                git credentialsId: 'credentials for task4 project', url: 'https://github.com/estishenker/task4.git'
+                sh 'git clone "https://github.com/estishenker/task4.git" /home/devops/Documents/nodeapp/' 
             }
         }
         stage('Build my_node_app image') {
