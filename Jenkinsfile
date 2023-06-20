@@ -7,7 +7,7 @@ pipeline {
         stage('Pull') {
             steps {
                 echo 'Pulling latest code ...'                              
-                git credentialsId: 'credentials for task4 project', url: 'https://github.com/estishenker/task4.git'
+                git credentialsId: 'gitConnection', url: 'https://github.com/estishenker/task4.git'
                 sh 'cd /home/devops/Documents/'
                 sh 'if [ -d "nodeapp" ]; then rm -R nodeapp; fi'
                 sh 'git clone "https://github.com/estishenker/task4.git" /home/devops/Documents/nodeapp/' 
