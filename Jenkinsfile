@@ -34,8 +34,8 @@ pipeline {
             }
         }
         stage('Notification with URL') {
-            if( ifContainerRunning == true ){           
-                steps {
+            steps {
+                if( ifContainerRunning == true ){                
                     notifySuccessful()
                 }
             }
