@@ -13,7 +13,7 @@ pipeline {
         stage('Pull') {
             steps {
                 echo 'Pulling latest code ...'                  
-                sh 'cd /home/devops/Documents/'
+                // sh 'cd /home/devops/Documents/'
                 git url: 'https://github.com/estishenker/task4.git/', 
                     credentialsId: '70f1c332-567d-433c-a4ae-9abb4f725fa8'
                 sh 'if [ -d "nodeapp" ]; then rm -R nodeapp; fi'
