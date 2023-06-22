@@ -4,9 +4,12 @@ pipeline {
         boolean ifContainerRunning = true
     }
     stages {
-        stage {
-            echo "============test============="
-        }    
+        stage('test') {
+            steps {
+                echo "============test============="
+        
+            }
+        }
         stage('Pull') {
             steps {
                 echo 'Pulling latest code ...'                  
