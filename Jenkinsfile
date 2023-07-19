@@ -15,6 +15,9 @@ pipeline {
                 echo 'Pulling latest code ...'                  
                 // sh 'cd /home/devops/Documents/'
                 git credentialsId: '70f1c332-567d-433c-a4ae-9abb4f725fa8', url: 'https://github.com/estishenker/task4.git/'                    
+
+צריך לעדכן מפתח זה לגישה    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   
+                
                 sh 'if [ -d "nodeapp" ]; then rm -R nodeapp; fi'
                 sh 'git clone "https://github.com/estishenker/task4.git" /home/devops/Documents/nodeapp/' 
             }
